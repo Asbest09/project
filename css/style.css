@@ -1,0 +1,172 @@
+:root {
+  --bg-color: #f4f6f8;
+  --container-bg: #ffffff;
+  --text-color: #1c1c1c;
+  --border-color: #cfd6dd;
+  --accent-color: #2c5aa0;
+  --header-bg: #ffffff;
+  --tab-bg: #e9edf1;
+  --tab-hover: #dde3ea;
+  --formula-bg: #f4f6f8;
+  --formula-border: #cfd6dd;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --container-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  --border-color: #333;
+  --accent-color: #64ffda;
+  --header-bg: #1e1e1e;
+  --tab-bg: #252525;
+  --tab-hover: #333;
+  --formula-bg: #2d2d2d; /* Темный фон для формул */
+  --formula-border: #444;   /* Темная рамка */
+}
+
+.formula-block {
+  background: var(--formula-bg);
+  border: 1px solid var(--formula-border);
+  padding: 12px;
+  margin: 12px 0;
+  font-family: monospace;
+  border-radius: 8px;
+  overflow-x: auto; /* На случай длинных формул на мобилках */
+}
+
+* { box-sizing: border-box; transition: background 0.3s ease, color 0.3s ease; }
+
+body {
+  margin: 0;
+  font-family: "Times New Roman", Georgia, serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: var(--header-bg);
+  border-bottom: 2px solid var(--border-color);
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: bold;
+}
+
+#theme-toggle {
+  background: var(--tab-bg);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.tabs {
+  display: flex;
+  background: var(--tab-bg);
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+  padding: 14px 24px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-right: 1px solid var(--border-color);
+}
+
+.tab:hover { background: var(--tab-hover); }
+
+.tab.active {
+  background: var(--container-bg);
+  font-weight: bold;
+  border-bottom: 3px solid var(--accent-color);
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: none;
+  background: var(--container-bg);
+  min-height: 70vh;
+}
+
+/* Анимация появления */
+.content.active {
+  display: block;
+  animation: fadeInSlide 0.5s ease forwards;
+}
+
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 { border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  background: var(--container-bg);
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 600px) {
+  .content { padding: 20px 16px; }
+}
+
+@media (min-width: 900px) {
+  .tabs { justify-content: center; }
+}
+
+.sub-tabs {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.sub-tab {
+  padding: 8px 16px;
+  cursor: pointer;
+  background: var(--tab-bg);
+  border-radius: 20px;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+}
+
+.sub-tab:hover {
+  background: var(--tab-hover);
+}
+
+.sub-tab.active {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+.sub-content {
+  display: none;
+  padding: 20px;
+  border-left: 3px solid var(--accent-color);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.sub-content.active {
+  display: block;
+  animation: fadeInSlide 0.4s ease;
+}
+
+body.dark-mode .sub-content {
+  background: rgba(255, 255, 255, 0.03);
+}
